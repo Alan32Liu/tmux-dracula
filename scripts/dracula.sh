@@ -19,7 +19,7 @@ main()
   show_military=$(get_tmux_option "@dracula-military-time" false)
   show_timezone=$(get_tmux_option "@dracula-show-timezone" true)
   show_left_sep=$(get_tmux_option "@dracula-show-left-sep" )
-  show_right_sep=$(get_tmux_option "@dracula-show-right-sep" )
+  show_right_sep=$(get_tmux_option "@dracula-show-right-sep" "")
   show_border_contrast=$(get_tmux_option "@dracula-border-contrast" false)
   show_day_month=$(get_tmux_option "@dracula-day-month" false)
   show_refresh=$(get_tmux_option "@dracula-refresh-rate" 5)
@@ -81,7 +81,7 @@ main()
       current_flags="";;
     true)
       flags="#{?window_flags,#[fg=${dark_purple}]#{window_flags},}"
-      current_flags="#{?window_flags,#[fg=${light_purple}]#{window_flags},}"
+      current_flags="#{?window_flags,#[fg=${cyan}]#{window_flags},}"
   esac
 
   # sets refresh interval to every 5 seconds
@@ -107,7 +107,7 @@ main()
   tmux set-option -g pane-border-style "fg=${gray}"
 
   # message styling
-  tmux set-option -g message-style "bg=${gray},fg=${white}"
+  tmux set-option -g message-style "bg=${pink},fg=${white}"
 
   # status bar
   tmux set-option -g status-style "bg=${gray},fg=${white}"
@@ -260,9 +260,9 @@ main()
 
   # Window option
   if $show_powerline; then
-    tmux set-window-option -g window-status-current-format "#[fg=${gray},bg=${dark_purple}]${left_sep}#[fg=${white},bg=${dark_purple}] #I #W${current_flags} #[fg=${dark_purple},bg=${gray}]${left_sep}"
+    tmux set-window-option -g window-status-current-format "#[fg=${gray},bg=${light_purple}]${left_sep}#[fg=${white},bg=${light_purple}] #I #W${current_flags} #[fg=${light_purple},bg=${gray}]${left_sep}"
   else
-    tmux set-window-option -g window-status-current-format "#[fg=${white},bg=${dark_purple}] #I #W${current_flags} "
+    tmux set-window-option -g window-status-current-format "#[fg=${white},bg=${light_purple}] #I #W${current_flags} "
   fi
 
   tmux set-window-option -g window-status-format "#[fg=${white}]#[bg=${gray}] #I #W${flags}"
